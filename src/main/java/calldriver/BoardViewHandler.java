@@ -21,17 +21,22 @@ public class BoardViewHandler {
     public void whenCallReceived_then_CREATE_1 (@Payload CallReceived callReceived) {
         try {
 
-            System.out.println("22222222222222222222222222222222222");
+
+            System.out.println(callReceived.getEventType());
+            System.out.println(callReceived.getClass().getSimpleName());
             if (callReceived.isMe()) {
+
+                System.out.println("22222222222222222222222222222222222");
                 // view 객체 생성
                 Board board = new Board();
                 // view 객체에 이벤트의 Value 를 set 함
-                board.setId(callReceived.getId());
+                board.setCallId(callReceived.getId());
                 // view 레파지 토리에 save
                 boardRepository.save(board);
             }
         }catch (Exception e){
             e.printStackTrace();
+            System.out.println("33333333333333333333333333333333333333");
         }
     }
 
